@@ -24,7 +24,7 @@ func (b *box) AddShape(shape Shape) error {
 		b.shapes=append(b.shapes,shape)
 		//fmt.Println(b)
 	}else{
-		if(len(b.shapes)<=b.shapesCapacity){
+		if(cap(b.shapes)<=b.shapesCapacity){
 			b.shapes=append(b.shapes,shape)
 			//fmt.Println(b)
 		}else{
