@@ -21,9 +21,12 @@ func NewBox(shapesCapacity int) *box {
 func (b *box) AddShape(shape Shape) error {
 	if(b.shapes ==nil){
 		b.shapes= make([]Shape,0,b.shapesCapacity)
+		b.shapes=append(b.shapes,shape)
+		fmt.Println(b)
 	}else{
 		if(len(b.shapes)<=b.shapesCapacity){
 			b.shapes=append(b.shapes,shape)
+			fmt.Println(b)
 		}else{
 			return fmt.Errorf("out of shapesCapacity!")
 		}
@@ -93,3 +96,4 @@ func (b *box) RemoveAllCircles() error {
 	panic("implement me")
 
 }
+
