@@ -20,7 +20,7 @@ func NewBox(shapesCapacity int) *box {
 // returns the error in case it goes out of the shapesCapacity range.
 func (b *box) AddShape(shape Shape) error {
 	if(b.shapes ==nil){
-		b.shapes= make([]Shape,b.shapesCapacity)
+		b.shapes= make([]Shape,0,b.shapesCapacity)
 	}else{
 		if(len(b.shapes)<=b.shapesCapacity){
 			b.shapes=append(b.shapes,shape)
