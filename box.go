@@ -8,6 +8,7 @@ type box struct {
 	shapesCapacity int // Maximum quantity of shapes that can be inside the box.
 }
 
+const customError="index out of shapesCapacity!"
 // NewBox creates new instance of box
 func NewBox(shapesCapacity int) *box {
 	return &box{
@@ -33,8 +34,9 @@ func (b *box) AddShape(shape Shape) error {
 // GetByIndex allows getting shape by index
 // whether shape by index doesn't exist or index went out of the range, then it returns an error
 func (b *box) GetByIndex(i int) (Shape, error) {
+	fmt.Println(b)
 	if(i>b.shapesCapacity){
-		return nil,fmt.Errorf("index out of shapesCapacity!")
+		return nil,fmt.Errorf(customError)
 	}else{
 		return b.shapes[i],nil
 	}
@@ -44,7 +46,7 @@ func (b *box) GetByIndex(i int) (Shape, error) {
 // whether shape by index doesn't exist or index went out of the range, then it returns an error
 func (b *box) ExtractByIndex(i int) (Shape, error) {
 	if(i>b.shapesCapacity){
-		return nil,fmt.Errorf("index out of shapesCapacity!")
+		return nil,fmt.Errorf(customError)
 	}else{
 		shape:=b.shapes[i]
 		b.shapes=append(b.shapes[:i], b.shapes[i+1:]...)
@@ -57,7 +59,7 @@ func (b *box) ExtractByIndex(i int) (Shape, error) {
 // whether shape by index doesn't exist or index went out of the range, then it returns an error
 func (b *box) ReplaceByIndex(i int, shape Shape) (Shape, error) {
 	if(i>b.shapesCapacity){
-		return nil,fmt.Errorf("index out of shapesCapacity!")
+		return nil,fmt.Errorf(customError)
 	}else{
 		removed:=b.shapes[i]
 	    b.shapes[i]=shape
